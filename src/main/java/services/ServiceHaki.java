@@ -1,31 +1,30 @@
 package services;
 
-import java.util.LinkedList;
-import java.util.function.Predicate;
-
+import java.util.ArrayList;
+import repository.RepoHaki;
 import special_abilities.Haki;
 
 public class ServiceHaki {
-LinkedList<Haki> listHakis = new LinkedList<>();
+	private RepoHaki repoHaki = new RepoHaki();
 	
 	
 	public void addHaki (Haki haki) {
-		listHakis.add(haki);
+		repoHaki.save(haki);
     }
 	
 	public void printListHakis () {
-		listHakis.forEach(System.out::println);
+		repoHaki.getArrayOfHaki().forEach(System.out::println);
     }
 	
 	public void removeHakiByIndex(int i) {
-		listHakis.remove(i);
+		repoHaki.removeHakiByIndex(i);
     }
-    public void removelistlistHakisByType (String type) {
-        Predicate<Haki> filter = (Haki h) -> (h.getType().equalsIgnoreCase(type));
-        listHakis.removeIf(filter);
+    public void removeHakiByType(String type) {
+    	repoHaki.removeHakiByType(type);
     }
     
-    public LinkedList<Haki> getArrayOfHaki(){
-    	return listHakis;
+    public ArrayList<Haki> getArrayOfHaki(){
+    	return repoHaki.getArrayOfHaki();
     }
 }
+

@@ -1,37 +1,35 @@
 package services;
 
-import java.util.LinkedList;
-import java.util.function.Predicate;
-
+import java.util.ArrayList;
 import characters.Warlord;
+import repository.RepoWarlord;
 
 public class ServiceWarlord {
-LinkedList<Warlord> listWarlord = new LinkedList<>();
+	private RepoWarlord repoWarlord = new RepoWarlord();
 	
 	
 	public void addWarlord (Warlord warlord) {
-		listWarlord.add(warlord);
+		repoWarlord.save(warlord);
     }
 	
 	public void printListWarlords () {
-		listWarlord.forEach(System.out::println);
+		repoWarlord.getArrayOfWarlord().forEach(System.out::println);
     }
 	
 	public void printListWarlordsByMissions() {
-		listWarlord.stream()
+		repoWarlord.getArrayOfWarlord().stream()
                 .sorted((p1,p2) -> p1.getMissionsDone() - p2.getMissionsDone())
                 .forEach(System.out::println);
     }
 	
 	public void removeWarlordByIndex(int i) {
-		listWarlord.remove(i);
+		repoWarlord.removeWarlordByIndex(i);
     }
     public void removelistWarlordByName(String name) {
-        Predicate<Warlord> filter = (Warlord wr) -> (wr.getName().equalsIgnoreCase(name));
-        listWarlord.removeIf(filter);
+    	repoWarlord.removeWarlordByName(name);
     }
     
-    public LinkedList<Warlord> getArrayOfWarlord(){
-    	return listWarlord;
+    public ArrayList<Warlord> getArrayOfWarlord(){
+    	return repoWarlord.getArrayOfWarlord();
     }
 }

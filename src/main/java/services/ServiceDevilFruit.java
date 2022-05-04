@@ -1,20 +1,19 @@
 package services;
 
-import java.util.LinkedList;
-import java.util.function.Predicate;
-
+import java.util.ArrayList;
+import repository.RepoDevilFruit;
 import special_abilities.DevilFruit;
 
 public class ServiceDevilFruit {
-LinkedList<DevilFruit> listDevilFruits = new LinkedList<>();
+	private RepoDevilFruit repoDevilFruit = new RepoDevilFruit();
 	
 	
 	public void addDevilFruit (DevilFruit devilfruit) {
-		listDevilFruits.add(devilfruit);
+		repoDevilFruit.save(devilfruit);
     }
 	
 	public void printListDevilFruits () {
-		listDevilFruits.forEach(System.out::println);
+		repoDevilFruit.getArrayOfDevilFruit().forEach(System.out::println);
     }
 //	public void printListDevilFruitsByName() {
 //		listDevilFruits.stream()
@@ -22,14 +21,13 @@ LinkedList<DevilFruit> listDevilFruits = new LinkedList<>();
 //                .forEach(System.out::println);
 //    }
 	public void removeDevilFruitByIndex(int i) {
-		listDevilFruits.remove(i);
+		repoDevilFruit.removeDevilFruitByIndex(i);
     }
-    public void removelistlistDevilFruitByName(String name) {
-        Predicate<DevilFruit> filter = (DevilFruit d) -> (d.getName().equalsIgnoreCase(name));
-        listDevilFruits.removeIf(filter);
+    public void removeDevilFruitByName(String name) {
+    	repoDevilFruit.removeDevilFruitByName(name);
     }
     
-    public LinkedList<DevilFruit> getArrayOfDevilFruit(){
-    	return  listDevilFruits;
+    public ArrayList<DevilFruit> getArrayOfDevilFruit(){
+    	return repoDevilFruit.getArrayOfDevilFruit();
     }
 }

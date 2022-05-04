@@ -113,6 +113,6 @@ public class Main {
         serivceWarlord.removelistWarlordByName("Buggy the Clown");
         serivceWarlord.printListWarlords();
         
-        
+      
     }
 }
