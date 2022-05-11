@@ -1,7 +1,7 @@
 package repository;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
+
 
 import characters.WorstGeneration;
 
@@ -12,15 +12,27 @@ private ArrayList<WorstGeneration> worstgens = new ArrayList<>();
 		worstgens.add(worsgeneration);
 	}
 	
-	public void removeWorstGenerationByIndex(int i) {
+	public void remove(int i) {
 		worstgens.remove(i);
     }
-    public void removeWorstGenerationByName(String name) {
-        Predicate<WorstGeneration> filter = (WorstGeneration w) -> (w.getName().equalsIgnoreCase(name));
-        worstgens.removeIf(filter);
-    }
+	
+	public void update(int index, String attribute, String newValue) {
+		switch(attribute) {
+		
+		case "agaistWorldG":
+			worstgens.get(index).setAgaistWorldG(Integer.parseInt(newValue));
+			break;
+		case "status":
+			worstgens.get(index).setStatus(newValue);
+			break;
+		default:
+			System.out.println("There is nothing to update!");
+			break;
+		}
+		
+	}
     
-    public ArrayList<WorstGeneration> getArrayOfWorstGeneration(){
+    public ArrayList<WorstGeneration> getAll(){
     	return worstgens;
     }
 }

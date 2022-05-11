@@ -16,6 +16,14 @@ public class Emperor extends Pirate {
         super(name, sea, age, status, devilFruit, hakis, threatLevel, crewSize, notority);
         this.kingdomsProtection = kingdomsProtection;
         this.base = base;
+        yonkoBountyCalculation();
+    }
+    
+    public Emperor(String name, String sea, Integer age, String status, Integer threatLevel, Integer crewSize, String notority, Integer kingdomsProtection, String base) {
+        super(name, sea, age, status, threatLevel, crewSize, notority);
+        this.kingdomsProtection = kingdomsProtection;
+        this.base = base;
+        yonkoBountyCalculation();
     }
 
     protected void yonkoBountyCalculation() {
@@ -56,13 +64,7 @@ public class Emperor extends Pirate {
 
     @Override
     public String toString() {
-        if(devilFruit == null && hakis.isEmpty())
-            return super.toString() + "\n" +
-                    "Kingdoms: " + kingdomsProtection + "\n" +
-                    "Base: " + base + "\n" +
-                    "Bounty: " + bounty + "\n";
-
-        else
+   
             return super.toString() + "\n" +
                     "Kingdoms: " + kingdomsProtection + "\n" +
                     "Base: " + base + "\n" +

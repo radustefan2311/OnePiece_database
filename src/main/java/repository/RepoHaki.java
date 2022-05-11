@@ -1,8 +1,6 @@
 package repository;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
-
 import special_abilities.Haki;
 
 public class RepoHaki {
@@ -12,15 +10,15 @@ private ArrayList<Haki> hakis = new ArrayList<>();
 		hakis.add(haki);
 	}
 	
-	public void removeHakiByIndex(int i) {
+	public void remove(int i) {
 		hakis.remove(i);
     }
-	public void removeHakiByType (String type) {
-        Predicate<Haki> filter = (Haki h) -> (h.getType().equalsIgnoreCase(type));
-        hakis.removeIf(filter);
-    }
+	
+	public void update(int index) {
+		hakis.get(index).isAdvanced();
+	}
     
-    public ArrayList<Haki> getArrayOfHaki(){
+    public ArrayList<Haki> getAll(){
     	return hakis;
     }
 }

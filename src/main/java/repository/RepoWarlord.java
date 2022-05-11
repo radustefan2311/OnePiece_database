@@ -1,26 +1,42 @@
 package repository;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
+import java.util.Collections;
+import java.util.List;
+import java.util.TreeSet;
 
 import characters.Warlord;
 
 public class RepoWarlord {
-	private ArrayList<Warlord> warlords = new ArrayList<>();
+	private TreeSet<Warlord> warlords = new TreeSet<>();
 	
 	public void save(Warlord warlord) {
 		warlords.add(warlord);
 	}
 	
-	public void removeWarlordByIndex(int i) {
-		warlords.remove(i);
+	public void remove(Warlord warlord) {
+		warlords.remove(warlord);
     }
-    public void removeWarlordByName(String name) {
-        Predicate<Warlord> filter = (Warlord wr) -> (wr.getName().equalsIgnoreCase(name));
-        warlords.removeIf(filter);
-    }
+	
+	public void update(int index, String attribute, String newValue) {
+		  List<Warlord> wars = new ArrayList<Warlord> (warlords);;
+		
+		switch(attribute) {
+		
+		case "missionsDone":
+			wars.get(index).setMissionsDone(Integer.parseInt(newValue));
+			break;
+		case "yearsOfService":
+			wars.get(index).setYearsOfService(Integer.parseInt(newValue));;
+			break;
+		default:
+			System.out.println("There is nothing to update!");
+			break;
+		}
+		this.warlords = new TreeSet<Warlord>(wars);
+	}
     
-    public ArrayList<Warlord> getArrayOfWarlord(){
+    public TreeSet<Warlord> getAll(){
     	return warlords;
     }
 }

@@ -1,6 +1,7 @@
 package services;
 
 import java.util.ArrayList;
+
 import characters.WorstGeneration;
 import repository.RepoWorstGeneration;
 
@@ -15,24 +16,41 @@ public class ServiceWorstGeneration {
     }
 	
 	public void printListWorstGenerations() {
-		repoWorstGeneration.getArrayOfWorstGeneration().forEach(System.out::println);
+		repoWorstGeneration.getAll().forEach(System.out::println);
     }
 	
 	public void printListWorstGenerationsByAg() {
-		repoWorstGeneration.getArrayOfWorstGeneration().stream()
+		repoWorstGeneration.getAll().stream()
                 .sorted((p1,p2) -> p1.getAgaistWorldG() - p2.getAgaistWorldG())
                 .forEach(System.out::println);
     }
 	
 	public void removeWorstGenerationByIndex(int i) {
-		repoWorstGeneration.removeWorstGenerationByIndex(i);
+		repoWorstGeneration.remove(i);
     }
 	
-    public void removeWorstGenerationsByName(String name) {
-    	repoWorstGeneration.removeWorstGenerationByName(name);
+	public void removeWorstGenByName(String name) {
+		ArrayList<WorstGeneration> worstgens = repoWorstGeneration.getAll();
+    	for(WorstGeneration worstgen : worstgens)
+        	if(worstgen.getName().equals(name))
+        		repoWorstGeneration.remove(worstgens.indexOf(worstgen));
     }
+	
+	public void updateAgaistWorldGByName(String name, int newAgaistWorld) {
+		ArrayList<WorstGeneration> worstgens = repoWorstGeneration.getAll();
+    	for(WorstGeneration worstgen : worstgens)
+        	if(worstgen.getName().equals(name))
+        		repoWorstGeneration.update(worstgens.indexOf(worstgen), "AgaistWorld", Integer.toString(newAgaistWorld));
+	  }
+	
+	public void updateStatusByName(String name, String newStatus) {
+		ArrayList<WorstGeneration> worstgens = repoWorstGeneration.getAll();
+    	for(WorstGeneration worstgen : worstgens)
+        	if(worstgen.getName().equals(name))
+        		repoWorstGeneration.update(worstgens.indexOf(worstgen), "Status", newStatus);
+	  }
     
     public ArrayList<WorstGeneration> getArrayOfWorstGeneration(){
-    	return repoWorstGeneration.getArrayOfWorstGeneration();   
+    	return repoWorstGeneration.getAll();   
     }
 }

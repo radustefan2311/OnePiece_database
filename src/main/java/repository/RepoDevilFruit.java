@@ -1,7 +1,7 @@
 package repository;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
+
 
 import special_abilities.DevilFruit;
 
@@ -12,15 +12,27 @@ public class RepoDevilFruit {
 		devilfruits.add(devilFruit);
 	}
 	
-	public void removeDevilFruitByIndex(int i) {
+	public void remove(int i) {
 		devilfruits.remove(i);
     }
-	public void removeDevilFruitByName(String name) {
-        Predicate<DevilFruit> filter = (DevilFruit d) -> (d.getName().equalsIgnoreCase(name));
-        devilfruits.removeIf(filter);
-    }
+	
+	public void update(int index, String attribute, String newValue) {
+		switch(attribute) {
+		
+		case "name":
+			devilfruits.get(index).setName(newValue);
+			break;
+		case "type":
+			devilfruits.get(index).setType(newValue);
+			break;
+		default:
+			System.out.println("There is nothing to update!");
+			break;
+		}
+		
+	}
     
-    public ArrayList<DevilFruit> getArrayOfDevilFruit(){
+    public ArrayList<DevilFruit> getAll(){
     	return devilfruits;
     }
 }

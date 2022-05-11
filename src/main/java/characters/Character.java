@@ -28,6 +28,13 @@ public abstract class Character implements Comparable<Character> {
         this.devilFruit = devilFruit;
         this.hakis = new LinkedList<>();
     }
+    
+    public Character(String name, String sea, Integer age, String status) {
+        this.name = name;
+        this.sea = sea;
+        this.age = age;
+        this.status = status;
+    }
 
     protected abstract void calcBounty();
     public abstract void showBounty();

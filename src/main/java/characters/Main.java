@@ -2,6 +2,7 @@ package characters;
 
 
 import crews.Crew;
+import csv.Read;
 import services.ServiceEmperor;
 import services.ServiceWarlord;
 import special_abilities.DevilFruit;
@@ -37,7 +38,10 @@ public class Main {
 
         Emperor emperor1 = new Emperor("Edward Newgate","Grand Line",72,"Deceased",devilFruit1,new LinkedList<>(),10,300,"high",12,"Sphinx");
         Emperor emperor2 = new Emperor("Kaido","Grand Line",59,"Alive/Wanted",devilFruit2,new LinkedList<>(),10,600,"high",3,"Onigashima");
-
+        Emperor emperor3 = new Emperor("Edward Newgate","Grand Line",72,"Deceased",10,300,"high",12,"Sphinx");
+        
+        
+        
         emperor1.addHaki(armamentF);
         emperor1.addHaki(observationF);
         emperor1.addHaki(kingF);
@@ -90,6 +94,7 @@ public class Main {
 
         charactersList.add(emperor1);
         charactersList.add(emperor2);
+        charactersList.add(emperor3);
         charactersList.add(warlord2);
         charactersList.add(worstGeneration1);
         charactersList.add(worstGeneration2);
@@ -103,16 +108,21 @@ public class Main {
         ServiceEmperor serviceEemperor = new ServiceEmperor();
         serviceEemperor.addEmperor(emperor1); 
         serviceEemperor.printListEmperors();
-        ServiceWarlord serivceWarlord = new ServiceWarlord();
-        serivceWarlord.addWarlord(warlord1);
-        serivceWarlord.addWarlord(warlord2);
-        serivceWarlord.removeWarlordByIndex(1);
-        serivceWarlord.printListWarlordsByMissions();
-        serivceWarlord.printListWarlords();
+        ServiceWarlord serviceWarlord = new ServiceWarlord();
+        serviceWarlord.addWarlord(warlord1);
+        serviceWarlord.addWarlord(warlord2);
         
-        serivceWarlord.removelistWarlordByName("Buggy the Clown");
-        serivceWarlord.printListWarlords();
-        
+       
+        serviceWarlord.updateMissionsDoneByName("Buggy The Clown" , 10);
+        System.out.println("Update----------------------");
+        serviceWarlord.printListWarlords();
       
+        System.out.println("TESTTTTTT----------------------");
+        ServiceEmperor serviceEemperor1 = new ServiceEmperor();
+        Read loader = Read.getInstance();
+        Read.loadClasses(serviceEemperor1);
+        	serviceEemperor1.printListEmperors();
     }
+    
+    
 }

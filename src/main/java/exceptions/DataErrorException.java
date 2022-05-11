@@ -1,9 +1,9 @@
 package exceptions;
 
-public class ErrorData extends Exception {
+public class DataErrorException extends Exception {
 	
 	private static final long serialVersionUID = 1L;
-	public ErrorData(String cause){
+	public DataErrorException(String cause){
         super(cause);
     }
 }

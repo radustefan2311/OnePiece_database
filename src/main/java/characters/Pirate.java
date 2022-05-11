@@ -23,12 +23,22 @@ public class Pirate extends Character {
 
         calcBounty();
     }
+    
+    public Pirate(String name, String sea, Integer age, String status, Integer threatLevel, Integer crewSize, String notority) {
+        super(name, sea, age, status);
+        this.threatLevel = threatLevel;
+        this.crewSize = crewSize;
+        this.notority = notority;
+
+        calcBounty();
+    }
+
 
     @Override
     protected void calcBounty() {
-        if (notority == "high")
+    	if("high".equals(notority))
             this.bounty = (double) (crewSize * threatLevel * 100);
-        else if (notority == "low" || notority == "medium")
+        else if("high".equals(notority)||"medium".equals(notority))
             this.bounty = (double) (crewSize * threatLevel);
     }
 

@@ -13,23 +13,41 @@ private RepoEmperor repoEmperor = new RepoEmperor();
     }
 	
 	public void printListEmperors() {
-		repoEmperor.getArrayOfEmperor().forEach(System.out::println);
+		repoEmperor.getAll().forEach(System.out::println);
     }
 	
 	public void printListEmperorsByKingdoms() {
-		repoEmperor.getArrayOfEmperor().stream()
+		repoEmperor.getAll().stream()
                 .sorted((p1,p2) -> p1.getKingdomsProtection() - p2.getKingdomsProtection())
                 .forEach(System.out::println);
     }
 	
 	public void removeEmperorByIndex(int i) {
-		repoEmperor.removeEmperorByIndex(i);
+		repoEmperor.remove(i);
     }
-    public void removeEmperorsByName(String name) {
-       repoEmperor.removeEmperorsByName(name);
+	
+	public void removeEmperorByName(String name) {
+		ArrayList<Emperor> emperors = repoEmperor.getAll();
+    	for(Emperor emperor : emperors)
+        	if(emperor.getName().equals(name))
+        		repoEmperor.remove(emperors.indexOf(emperor));
     }
-    
+	
+	 public void updateKingdomsProtectionByName(String name, int newKingdomsProtection) {
+		   ArrayList<Emperor> emperors = repoEmperor.getAll();
+	  		for(Emperor emperor : emperors)
+	  			if(emperor.getName().equals(name))
+	  				repoEmperor.update(emperors.indexOf(emperor), "KingdomsProtection", Integer.toString(newKingdomsProtection));
+	  }
+	  
+	  public void updateBaseByName(String name, String newBase) {
+		  ArrayList<Emperor> emperors = repoEmperor.getAll();
+	  		for(Emperor emperor : emperors)
+	  			if(emperor.getName().equals(name))
+	  				repoEmperor.update(emperors.indexOf(emperor), "base", newBase);	
+	  }		
+  
     public ArrayList<Emperor> getArrayOfEmperor(){
-    	return repoEmperor.getArrayOfEmperor();
+    	return repoEmperor.getAll();
     }
 }
