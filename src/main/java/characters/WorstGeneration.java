@@ -19,6 +19,14 @@ public class WorstGeneration extends Pirate {
 
         wgBountyCalculation();
     }
+    
+    public WorstGeneration(String name, String sea, Integer age, String status, Integer threatLevel, Integer crewSize, String notority, Integer agaistWorldG, boolean supernova) {
+        super(name, sea, age, status, threatLevel, crewSize, notority);
+        this.agaistWorldG = agaistWorldG;
+        this.supernova = supernova;
+
+        wgBountyCalculation();
+    }
 
     protected void wgBountyCalculation() {
         if (supernova == true)

@@ -1,15 +1,18 @@
 package services;
 
+import java.io.IOException;
 import java.util.TreeSet;
 
 import characters.Warlord;
+import csv.Log;
 import repository.RepoWarlord;
 
 public class ServiceWarlord {
 	private RepoWarlord repoWarlord = new RepoWarlord();
 	
 	
-	public void addWarlord (Warlord warlord) {
+	public void addWarlord (Warlord warlord) throws IOException {
+		Log.log("Adding warlord: " + warlord.getName());
 		repoWarlord.save(warlord);
     }
 	
@@ -24,7 +27,8 @@ public class ServiceWarlord {
     }
 	
 	
-	public void removeWarlordByName(String name) {
+	public void removeWarlordByName(String name) throws IOException {
+		Log.log("Removing warlord: " + name);
 		TreeSet<Warlord> warlords = repoWarlord.getAll();
     	for(Warlord warlord : warlords)
         	if(warlord.getName().equals(name))

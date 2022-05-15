@@ -2,19 +2,24 @@ package characters;
 
 
 import crews.Crew;
+import csv.Log;
 import csv.Read;
+import csv.Write;
+import services.ServiceDevilFruit;
 import services.ServiceEmperor;
 import services.ServiceWarlord;
+import services.ServiceWorstGeneration;
 import special_abilities.DevilFruit;
 import special_abilities.Haki;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         //Devil Fruit objects
 
@@ -117,12 +122,26 @@ public class Main {
         System.out.println("Update----------------------");
         serviceWarlord.printListWarlords();
       
-        System.out.println("TESTTTTTT----------------------");
-        ServiceEmperor serviceEemperor1 = new ServiceEmperor();
-        Read loader = Read.getInstance();
-        Read.loadClasses(serviceEemperor1);
-        	serviceEemperor1.printListEmperors();
+        System.out.println("---------------TEST LOG----------------------");
+       
+        Log.clearLog();
+        Log.log("System startup");
+        
+		
+		ServiceEmperor serviceEmperor1 = new ServiceEmperor();
+		ServiceWarlord serviceWarlord1 = new ServiceWarlord();
+		ServiceWorstGeneration serviceWorstGen1 = new ServiceWorstGeneration();
+		ServiceDevilFruit serviceDevilFruit1 = new ServiceDevilFruit();
+		Read loader = Read.getInstance();
+   	    Read.loadC(serviceEmperor1, serviceWarlord1, serviceWorstGen1, serviceDevilFruit1);
+    	serviceEmperor1.printListEmperors();
+
+    	Write writer = Write.getInstance();
+    	Write.writeToFiles(serviceEmperor1, serviceWarlord1, serviceWorstGen1, serviceDevilFruit1);
+    	
+    	Log.log("System shutdown");
+        Log.getBw().close();
+		
     }
-    
-    
+      
 }

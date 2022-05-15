@@ -3,9 +3,16 @@ package csv;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.TreeSet;
 
 import characters.Emperor;
+import characters.Warlord;
+import characters.WorstGeneration;
+import services.ServiceDevilFruit;
 import services.ServiceEmperor;
+import services.ServiceWarlord;
+import services.ServiceWorstGeneration;
+import special_abilities.DevilFruit;
 
 public class Write {
 	private static final Write wr_csv = null;
@@ -32,10 +39,58 @@ public class Write {
         
     }
     
-    public static void writeToFiles(ServiceEmperor serviceEmp) {
+    private static void warlords(ServiceWarlord service) throws IOException {
+    	try (PrintWriter writer = new PrintWriter("src/main/java/csv/warlord.csv")) {
+			TreeSet<Warlord> list = service.getArrayOfWarlord();
+			String header = "name, sea, age, status, threatLevel, crewSize, notority, missionsDone, yearsOfService";
+			writer.println(header);
+			
+			for (Warlord warlord : list) {
+			    writer.println(warlord.getName() + ", " + warlord.getSea() + ", " + warlord.getAge() + ", " + warlord.getStatus() + ", " + warlord.getThreatLevel() + ", " +
+			    		warlord.getCrewSize() + ", " +  warlord.getNotority() + ", " + warlord.getMissionsDone() + ", " + warlord.getYearsOfService());
+			}
+		}
+        
+    }
+    
+    private static void worstGens(ServiceWorstGeneration service) throws IOException {
+    	try (PrintWriter writer = new PrintWriter("src/main/java/csv/worstGeneration.csv")) {
+    		List<WorstGeneration> list = service.getArrayOfWorstGeneration();
+			String header = "name, sea, age, status, threatLevel, crewSize, notority, agaistWorldG, supernova";
+			writer.println(header);
+			
+			for (WorstGeneration worstgen : list) {
+			    writer.println(worstgen.getName() + ", " + worstgen.getSea() + ", " + worstgen.getAge() + ", " + worstgen.getStatus() + ", " + worstgen.getThreatLevel() + ", " +
+			    		worstgen.getCrewSize() + ", " +  worstgen.getNotority() + ", " +worstgen.getAgaistWorldG() + ", " + worstgen.isSupernova());
+			}
+		}
+        
+    }
+    
+    private static void devilFruit(ServiceDevilFruit service) throws IOException {
+    	try (PrintWriter writer = new PrintWriter("src/main/java/csv/devilFruit.csv")) {
+			List<DevilFruit> list = service.getArrayOfDevilFruit();
+			String header = "name, type, age, mythical";
+			writer.println(header);
+			
+			for (DevilFruit devilFruit : list) {
+			    writer.println(devilFruit.getName() + ", " + devilFruit.getType() + ", " + devilFruit.isMythical());
+			}
+		}
+        
+    }
+    
+    
+    public static void writeToFiles(ServiceEmperor serviceEmperor, ServiceWarlord serviceWarlord, ServiceWorstGeneration serviceWorstGen, ServiceDevilFruit serviceDevilFruit) {
     	try {
     		Log.log("Uploading emperors");
-			emperors(serviceEmp);
+			emperors(serviceEmperor);
+			Log.log("Uploading warlords");
+			warlords(serviceWarlord);
+			Log.log("Uploading worst generations");
+			worstGens(serviceWorstGen);
+			Log.log("Uploading devil fruits");
+			devilFruit(serviceDevilFruit);
 		} catch (IOException e) {
 			
 			e.printStackTrace();

@@ -19,6 +19,15 @@ public class Warlord extends Pirate {
 
         decreaseBounty();
     }
+    
+    public Warlord(String name, String sea, Integer age, String status, Integer threatLevel, Integer crewSize, String notority, Integer missionsDone, Integer yearsOfService) {
+        super(name, sea, age, status, threatLevel, crewSize, notority);
+        this.missionsDone = missionsDone;
+        this.yearsOfService = yearsOfService;
+        
+        decreaseBounty();
+        
+    }
 
     @Override
     protected void addHaki(Haki haki) {
@@ -26,9 +35,9 @@ public class Warlord extends Pirate {
     }
 
     protected void decreaseBounty() {
-        int goodRep = missionsDone * yearsOfService;
-        this.bounty -= goodRep;
-
+        
+        this.bounty = (double) (missionsDone * yearsOfService);
+        
     }
 
     @Override

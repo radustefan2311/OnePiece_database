@@ -1,8 +1,10 @@
 package services;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import characters.WorstGeneration;
+import csv.Log;
 import repository.RepoWorstGeneration;
 
 
@@ -11,7 +13,8 @@ public class ServiceWorstGeneration {
 	private RepoWorstGeneration repoWorstGeneration = new RepoWorstGeneration();
 	
 	
-	public void addWorstGeneration(WorstGeneration worstgeneration) {
+	public void addWorstGeneration(WorstGeneration worstgeneration) throws IOException {
+		Log.log("Adding worst generation: " + worstgeneration.getName());
 		repoWorstGeneration.save(worstgeneration);
     }
 	
@@ -29,7 +32,8 @@ public class ServiceWorstGeneration {
 		repoWorstGeneration.remove(i);
     }
 	
-	public void removeWorstGenByName(String name) {
+	public void removeWorstGenByName(String name) throws IOException {
+		Log.log("Removing worst generation: " + name);
 		ArrayList<WorstGeneration> worstgens = repoWorstGeneration.getAll();
     	for(WorstGeneration worstgen : worstgens)
         	if(worstgen.getName().equals(name))

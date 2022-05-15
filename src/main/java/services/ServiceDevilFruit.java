@@ -1,7 +1,9 @@
 package services;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import csv.Log;
 import repository.RepoDevilFruit;
 import special_abilities.DevilFruit;
 
@@ -9,7 +11,8 @@ public class ServiceDevilFruit {
 	private RepoDevilFruit repoDevilFruit = new RepoDevilFruit();
 	
 	
-	public void addDevilFruit (DevilFruit devilfruit) {
+	public void addDevilFruit (DevilFruit devilfruit) throws IOException {
+		Log.log("Adding devil fruit: " + devilfruit.getName());
 		repoDevilFruit.save(devilfruit);
     }
 	
@@ -27,7 +30,8 @@ public class ServiceDevilFruit {
 		repoDevilFruit.remove(i);
     }
 	
-	public void removeDevilFruitByName(String name) {
+	public void removeDevilFruitByName(String name) throws IOException {
+		Log.log("Removing devil fruit: " + name);
 		ArrayList<DevilFruit> devilfruits = repoDevilFruit.getAll();
     	for(DevilFruit devilfruit : devilfruits)
         	if(devilfruit.getName().equals(name))

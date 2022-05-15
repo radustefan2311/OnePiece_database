@@ -1,15 +1,18 @@
 package services;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import characters.Emperor;
+import csv.Log;
 import repository.RepoEmperor;
 
 public class ServiceEmperor {
 private RepoEmperor repoEmperor = new RepoEmperor();
 	
 	
-	public void addEmperor(Emperor emperor) {
-		repoEmperor.save(emperor);
+	public void addEmperor(Emperor emperor) throws IOException {
+		  Log.log("Adding emperor: " + emperor.getName());
+	   repoEmperor.save(emperor);
     }
 	
 	public void printListEmperors() {
@@ -26,7 +29,8 @@ private RepoEmperor repoEmperor = new RepoEmperor();
 		repoEmperor.remove(i);
     }
 	
-	public void removeEmperorByName(String name) {
+	public void removeEmperorByName(String name) throws IOException {
+		Log.log("Removing emperor: " + name);
 		ArrayList<Emperor> emperors = repoEmperor.getAll();
     	for(Emperor emperor : emperors)
         	if(emperor.getName().equals(name))
