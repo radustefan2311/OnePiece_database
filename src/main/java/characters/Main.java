@@ -133,11 +133,11 @@ public class Main {
 		ServiceWorstGeneration serviceWorstGen1 = new ServiceWorstGeneration();
 		ServiceDevilFruit serviceDevilFruit1 = new ServiceDevilFruit();
 		Read loader = Read.getInstance();
-   	    Read.loadC(serviceEmperor1, serviceWarlord1, serviceWorstGen1, serviceDevilFruit1);
+   	    loader.loadC(serviceEmperor1, serviceWarlord1, serviceWorstGen1, serviceDevilFruit1);
     	serviceEmperor1.printListEmperors();
 
     	Write writer = Write.getInstance();
-    	Write.writeToFiles(serviceEmperor1, serviceWarlord1, serviceWorstGen1, serviceDevilFruit1);
+    	writer.writeToFiles(serviceEmperor1, serviceWarlord1, serviceWorstGen1, serviceDevilFruit1);
     	
     	Log.log("System shutdown");
         Log.getBw().close();

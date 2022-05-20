@@ -15,17 +15,19 @@ import services.ServiceWorstGeneration;
 import special_abilities.DevilFruit;
 
 public class Write {
-	private static final Write wr_csv = null;
+	private static Write write = null;
 
     private Write() {
     }
 
     public static Write getInstance() {
-        return wr_csv;
+    	if(write == null) 
+    		write = new Write();
+    	return write;
     }
     
     
-    private static void emperors(ServiceEmperor service) throws IOException {
+    private void emperors(ServiceEmperor service) throws IOException {
     	try (PrintWriter writer = new PrintWriter("src/main/java/csv/emperor.csv")) {
 			List<Emperor> list = service.getArrayOfEmperor();
 			String header = "name, sea, age, status, threatLevel, crewSize, notority, kingdomsProtection, base";
@@ -39,7 +41,7 @@ public class Write {
         
     }
     
-    private static void warlords(ServiceWarlord service) throws IOException {
+    private void warlords(ServiceWarlord service) throws IOException {
     	try (PrintWriter writer = new PrintWriter("src/main/java/csv/warlord.csv")) {
 			TreeSet<Warlord> list = service.getArrayOfWarlord();
 			String header = "name, sea, age, status, threatLevel, crewSize, notority, missionsDone, yearsOfService";
@@ -53,7 +55,7 @@ public class Write {
         
     }
     
-    private static void worstGens(ServiceWorstGeneration service) throws IOException {
+    private void worstGens(ServiceWorstGeneration service) throws IOException {
     	try (PrintWriter writer = new PrintWriter("src/main/java/csv/worstGeneration.csv")) {
     		List<WorstGeneration> list = service.getArrayOfWorstGeneration();
 			String header = "name, sea, age, status, threatLevel, crewSize, notority, agaistWorldG, supernova";
@@ -67,7 +69,7 @@ public class Write {
         
     }
     
-    private static void devilFruit(ServiceDevilFruit service) throws IOException {
+    private void devilFruit(ServiceDevilFruit service) throws IOException {
     	try (PrintWriter writer = new PrintWriter("src/main/java/csv/devilFruit.csv")) {
 			List<DevilFruit> list = service.getArrayOfDevilFruit();
 			String header = "name, type, age, mythical";
@@ -81,7 +83,7 @@ public class Write {
     }
     
     
-    public static void writeToFiles(ServiceEmperor serviceEmperor, ServiceWarlord serviceWarlord, ServiceWorstGeneration serviceWorstGen, ServiceDevilFruit serviceDevilFruit) {
+    public void writeToFiles(ServiceEmperor serviceEmperor, ServiceWarlord serviceWarlord, ServiceWorstGeneration serviceWorstGen, ServiceDevilFruit serviceDevilFruit) {
     	try {
     		Log.log("Uploading emperors");
 			emperors(serviceEmperor);

@@ -15,16 +15,18 @@ import services.ServiceWorstGeneration;
 import special_abilities.DevilFruit;
 
 public class Read {
-	private static final Read rw_csv = null;
+	private static Read read = null;
 
     private Read() {
     }
 
     public static Read getInstance() {
-        return rw_csv;
+    	if(read == null) 
+    		read = new Read();
+    	return read;
     }
 
-    private static void emperors(ServiceEmperor service) throws IOException {
+    private void emperors(ServiceEmperor service) throws IOException {
         File file = new File("src/main/java/csv/emperor.csv");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr,10 *1024);
@@ -41,7 +43,7 @@ public class Read {
         br.close();
     }
     
-    private static void warlords(ServiceWarlord service) throws IOException {
+    private void warlords(ServiceWarlord service) throws IOException {
         File file = new File("src/main/java/csv/warlord.csv");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr,10 *1024);
@@ -58,7 +60,7 @@ public class Read {
         br.close();
     }
     
-    private static void worstGen(ServiceWorstGeneration service) throws IOException {
+    private void worstGen(ServiceWorstGeneration service) throws IOException {
         File file = new File("src/main/java/csv/worstGeneration.csv");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr,10 *1024);
@@ -75,7 +77,7 @@ public class Read {
         br.close();
     }
     
-    private static void devilFruit(ServiceDevilFruit service) throws IOException {
+    private void devilFruit(ServiceDevilFruit service) throws IOException {
         File file = new File("src/main/java/csv/devilFruit.csv");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr,10 *1024);
@@ -91,7 +93,7 @@ public class Read {
         br.close();
     }
 
-    public static void loadC(ServiceEmperor serviceEmperor, ServiceWarlord serviceWarlord, ServiceWorstGeneration serviceWorstGen, ServiceDevilFruit serviceDevilFruit) {
+    public void loadC(ServiceEmperor serviceEmperor, ServiceWarlord serviceWarlord, ServiceWorstGeneration serviceWorstGen, ServiceDevilFruit serviceDevilFruit) {
     	try {
     		Log.log("Loading emperors");
 			emperors(serviceEmperor);
