@@ -3,14 +3,14 @@ package characters;
 
 import crews.Crew;
 import csv.Log;
-import csv.Read;
-import csv.Write;
+import csv.ReadService;
+import csv.WriteService;
 import services.ServiceDevilFruit;
 import services.ServiceEmperor;
 import services.ServiceWarlord;
 import services.ServiceWorstGeneration;
-import special_abilities.DevilFruit;
-import special_abilities.Haki;
+import specialAbilities.DevilFruit;
+import specialAbilities.Haki;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -132,11 +132,11 @@ public class Main {
 		ServiceWarlord serviceWarlord1 = new ServiceWarlord();
 		ServiceWorstGeneration serviceWorstGen1 = new ServiceWorstGeneration();
 		ServiceDevilFruit serviceDevilFruit1 = new ServiceDevilFruit();
-		Read loader = Read.getInstance();
+		ReadService loader = ReadService.getInstance();
    	    loader.loadC(serviceEmperor1, serviceWarlord1, serviceWorstGen1, serviceDevilFruit1);
     	serviceEmperor1.printListEmperors();
 
-    	Write writer = Write.getInstance();
+    	WriteService writer = WriteService.getInstance();
     	writer.writeToFiles(serviceEmperor1, serviceWarlord1, serviceWorstGen1, serviceDevilFruit1);
     	
     	Log.log("System shutdown");

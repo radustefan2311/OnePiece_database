@@ -3,7 +3,7 @@ package services;
 import java.util.ArrayList;
 
 import repository.RepoHaki;
-import special_abilities.Haki;
+import specialAbilities.Haki;
 
 public class ServiceHaki {
 	private RepoHaki repoHaki = new RepoHaki();

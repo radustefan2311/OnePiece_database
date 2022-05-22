@@ -2,8 +2,7 @@ package repository;
 
 import java.util.ArrayList;
 
-
-import special_abilities.DevilFruit;
+import specialAbilities.DevilFruit;
 
 public class RepoDevilFruit {
 	private ArrayList<DevilFruit> devilfruits = new ArrayList<>();

@@ -1,4 +1,4 @@
-package special_abilities;
+package specialAbilities;
 
 public class DevilFruit {
     private String name;

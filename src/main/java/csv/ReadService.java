@@ -12,22 +12,22 @@ import services.ServiceDevilFruit;
 import services.ServiceEmperor;
 import services.ServiceWarlord;
 import services.ServiceWorstGeneration;
-import special_abilities.DevilFruit;
+import specialAbilities.DevilFruit;
 
-public class Read {
-	private static Read read = null;
+public class ReadService {
+	private static ReadService read = null;
 
-    private Read() {
+    private ReadService() {
     }
 
-    public static Read getInstance() {
+    public static ReadService getInstance() {
     	if(read == null) 
-    		read = new Read();
+    		read = new ReadService();
     	return read;
     }
 
     private void emperors(ServiceEmperor service) throws IOException {
-        File file = new File("src/main/java/csv/emperor.csv");
+        File file = new File("src/main/java/resources/emperor.csv");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr,10 *1024);
         String line = null;
@@ -44,7 +44,7 @@ public class Read {
     }
     
     private void warlords(ServiceWarlord service) throws IOException {
-        File file = new File("src/main/java/csv/warlord.csv");
+        File file = new File("src/main/java/resources/warlord.csv");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr,10 *1024);
         String line = null;
@@ -61,7 +61,7 @@ public class Read {
     }
     
     private void worstGen(ServiceWorstGeneration service) throws IOException {
-        File file = new File("src/main/java/csv/worstGeneration.csv");
+        File file = new File("src/main/java/resources/worstGeneration.csv");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr,10 *1024);
         String line = null;
@@ -78,7 +78,7 @@ public class Read {
     }
     
     private void devilFruit(ServiceDevilFruit service) throws IOException {
-        File file = new File("src/main/java/csv/devilFruit.csv");
+        File file = new File("src/main/java/resources/devilFruit.csv");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr,10 *1024);
         String line = null;

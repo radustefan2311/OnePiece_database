@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import csv.Log;
 import repository.RepoDevilFruit;
-import special_abilities.DevilFruit;
+import specialAbilities.DevilFruit;
 
 public class ServiceDevilFruit {
 	private RepoDevilFruit repoDevilFruit = new RepoDevilFruit();

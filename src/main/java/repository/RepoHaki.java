@@ -1,7 +1,8 @@
 package repository;
 
 import java.util.ArrayList;
-import special_abilities.Haki;
+
+import specialAbilities.Haki;
 
 public class RepoHaki {
 private ArrayList<Haki> hakis = new ArrayList<>();

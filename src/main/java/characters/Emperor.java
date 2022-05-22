@@ -1,9 +1,9 @@
 package characters;
 
-import special_abilities.DevilFruit;
-import special_abilities.Haki;
-
 import java.util.LinkedList;
+
+import specialAbilities.DevilFruit;
+import specialAbilities.Haki;
 
 public class Emperor extends Pirate {
     private Integer kingdomsProtection;

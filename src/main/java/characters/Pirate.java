@@ -1,10 +1,10 @@
 package characters;
 
 
-import special_abilities.DevilFruit;
-import special_abilities.Haki;
-
 import java.util.LinkedList;
+
+import specialAbilities.DevilFruit;
+import specialAbilities.Haki;
 
 public class Pirate extends Character {
     protected Integer threatLevel; //ranges from 0 to 10
