@@ -5,8 +5,11 @@ import crews.Crew;
 import csv.Log;
 import csv.ReadService;
 import csv.WriteService;
+import jdbc.DataBaseConnection;
+import jdbc.ReadDataBase;
 import services.ServiceDevilFruit;
 import services.ServiceEmperor;
+import services.ServiceHaki;
 import services.ServiceWarlord;
 import services.ServiceWorstGeneration;
 import specialAbilities.DevilFruit;
@@ -130,6 +133,7 @@ public class Main {
 		
 		ServiceEmperor serviceEmperor1 = new ServiceEmperor();
 		ServiceWarlord serviceWarlord1 = new ServiceWarlord();
+		ServiceHaki serviceHaki1 = new ServiceHaki();
 		ServiceWorstGeneration serviceWorstGen1 = new ServiceWorstGeneration();
 		ServiceDevilFruit serviceDevilFruit1 = new ServiceDevilFruit();
 		ReadService loader = ReadService.getInstance();
@@ -141,7 +145,31 @@ public class Main {
     	
     	Log.log("System shutdown");
         Log.getBw().close();
+        
+        
+      //JDBC TEST
+        Log.clearLog();
+        Log.log("System start");
+
+        DataBaseConnection dbcon = DataBaseConnection.getInstance();
+        ReadDataBase readDb = ReadDataBase.getInstance();
+        
+        boolean flag = true;
+        try {
+            dbcon.startConn();
+
+            readDb.loadObjects(serviceEmperor1, serviceDevilFruit1, serviceHaki1, serviceWarlord1);
+        } catch (Exception e) {
+            Log.log("Can't access database");
+            flag = false;
+        }
+        
+        if(flag) dbcon.closeConn();
+
+        Log.log("System shutdown");
+        Log.getBw().close();
 		
     }
+	
       
 }
